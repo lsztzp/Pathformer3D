@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@02eb7a53-bb77-44c9-a706-9c60024f96bb" />
+        <remote-mappings server-id="python@sftp://qmengyu@3.tcp.vip.cpolar.cn:12007/home/qmengyu/anaconda3/envs/pytorch/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/data/qmengyu/scanpath360" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
