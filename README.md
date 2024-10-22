@@ -1,4 +1,4 @@
-# Pathformer3D: A 3D Scanpath Transformer for 360° Images"
+# Pathformer3D: A 3D Scanpath Transformer for 360° Images
 
 You can find the preprint on [[arXiv](https://arxiv.org/abs/2407.10563)]
 
