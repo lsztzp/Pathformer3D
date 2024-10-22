@@ -33,8 +33,7 @@ if __name__ == '__main__':
                         replace_encoder=cfg.replace_encoder
                         ).to(cfg.device)
 
-    # cfg.reload_path = "/data/lyt/02-Results/01-ScanPath/360_test_logs/01-05-num_gauss=5/checkpoint/checkpoint.pth.tar"
-    cfg.reload_path = "./weights/checkpoint.pth.tar"
+    cfg.reload_path = "/data/lyt/02-Results/01-ScanPath/360_test_logs/01-05-baseline/checkpoint/checkpoint.pth.tar"
 
     assert cfg.reload_path
     checkpoint = torch.load(cfg.reload_path, map_location='cpu')
