@@ -103,7 +103,7 @@ def get_score_filename(pred_fixation_sphere, file_name, dataset_name,
                        metrics=('LEV', 'DTW', 'REC', 'DET', 'ScanMatch', 'TDE')):
     """
     pred_fixation 预测扫视路径 经纬度形式： 【 L, 2】 np 形式
-    file_name 真值文件名
+    file_name
     """
     data_path = dataset_dict[dataset_name.lower()]["data_path"]
     imagespath = dataset_dict[dataset_name.lower()]["image_path"]

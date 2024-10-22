@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-rotate = False  # 是否执行原图旋转到指定目录
+rotate = False
 
 IMAGE_ORIGIN_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/JUFE/Raw/JUFE/dis/")
 IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/JUFE/images/")
@@ -50,7 +50,7 @@ def getFileName(root, target_file):
 
 if __name__ == '__main__':
 
-    if rotate:  # 图像旋转
+    if rotate:
         rotate_images(str(IMAGE_PATH) + '/', str(IMAGE_PATH) + '/')
 
     MOS_file = xlrd.open_workbook(MOS_PATH).sheet_by_name('Sheet1')

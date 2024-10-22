@@ -8,7 +8,7 @@ import numpy as np
 import torch
 from datasets.utils import rotate_scanpath
 
-rotate = False  # if totate
+rotate = False  # if rotate
 IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/AOI/images/")    #saved image dir
 
 GAZE_ORIGIN_PATH = Path(
@@ -21,7 +21,6 @@ if not GAZE_PATH.exists():
 
 def rotate_images(input_path, output_path):
     """Rotate 360-degree images"""
-    "水平旋转 -180° ~ 180° "
     for _, _, files in os.walk(input_path):
         for name in files:
             for i in range(6):

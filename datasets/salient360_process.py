@@ -1,14 +1,13 @@
 import copy
 import json
 import os
-import random
 from pathlib import Path
 import numpy as np
 import torch
 from datasets.utils import rotate_scanpath
 from metircs import suppor_lib
 
-rotate = False  # 是否执行原图旋转到指定目录
+rotate = False  # if rotate
 IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/salient360/images/")
 
 GAZE_ORIGIN_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/salient360/Raw/Images/H/Scanpaths/")
@@ -33,14 +32,10 @@ def rotate_images(input_path, output_path):
 
 if __name__ == '__main__':
 
-    if rotate:  # 图像旋转
+    if rotate:  # rotate
         rotate_images(str(IMAGE_PATH) + '/', str(IMAGE_PATH) + '/')
 
     images_paths = [file_path for file_path in IMAGE_PATH.glob("*.jpg") if not '_' in file_path.stem[4:]]
-
-    # random.shuffle(images_paths)  #全部验证
-    # # cnt = int(len(images_paths) * 0.8)   # 对于Salient360, 全部用于验证，这里暂时仿照AOI 80%用于训练，20%用于验证
-    # cnt = int(len(images_paths) * 0)
 
     images_paths.sort()
     cnt=60
@@ -51,8 +46,8 @@ if __name__ == '__main__':
     val_images_paths.sort()
 
     data_dict = {
-        "all": [],  # 当数据集整体用于测试时使用
-        "train": [],  # 使用数据增强
+        "all": [],
+        "train": [],
         "test": []
     }
 
@@ -81,7 +76,7 @@ if __name__ == '__main__':
                     _gaze = np.concatenate(
                         (np.array(y).reshape(-1, 1), np.array(x).reshape(-1, 1)), axis=1)
                     scanpaths.append(
-                        suppor_lib.plane2sphere(torch.from_numpy(_gaze)).numpy())  # 这里不需要传递高宽参数吗
+                        suppor_lib.plane2sphere(torch.from_numpy(_gaze)).numpy())
                     x, y = [], []
                 elif (row_id + 4) % 4 == 0:  # sampling 25 points from 100 points
                     x.append(lon)

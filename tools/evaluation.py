@@ -7,7 +7,6 @@ import torch
 from collections import Iterable, defaultdict
 from modules.mdn3d import mixture_probability
 
-
 class Evaluation:
     def __init__(self, work_dir, writer, val_batch_size, device, seed, max_length,
                  action_map_size, image_input_resize, patch_size, ):
@@ -109,13 +108,13 @@ class Evaluation:
                             val_performance[metric].append(score)
 
                         print(f"Epoch: {epoch}, val_loss = {loss_item},  val_score {scores}")
-                if not save and i_batch > 5:  # 测试代码
+                if not save and i_batch > 5:
                     break
             for metric, scores_list in val_performance.items():
                 val_performance[metric] = mean(scores_list)
 
             if self.writer and not save:
-                # 传入 tensorboard 指标分数
+                # tensorboard
                 print('epoch', epoch, f'{dataset_name}_val_performance', val_performance, )
                 for key, value in val_performance.items():
                     print(key, value, isinstance(value, Iterable))

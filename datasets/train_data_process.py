@@ -11,7 +11,7 @@ from datasets.utils import rotate_scanpath
 from metircs import suppor_lib
 
 
-rotate = False  # 是否执行原图旋转到指定目录
+rotate = False  # if rotate
 save = True
 
 IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/sitzmann/images/")
@@ -23,7 +23,7 @@ if not GAZE_PATH.exists():
     GAZE_PATH.mkdir(parents=True)
 
 # config
-length_scanpath = 30  # 扫视路径长度（注视点个数）
+length_scanpath = 30  #length
 TEST_SET = ('cubemap_0000.png', 'cubemap_0006.png', 'cubemap_0009.png')
 
 
@@ -42,7 +42,7 @@ def rotate_images(input_path, output_path):
 
 if __name__ == '__main__':
 
-    if rotate:  # 图像旋转
+    if rotate:
         rotate_images(str(IMAGE_PATH) + '/', str(IMAGE_PATH) + '/')
 
     images_paths = [file_path for file_path in IMAGE_PATH.glob("cubemap_*.png") if "_" not in file_path.stem[9:]]
@@ -121,7 +121,7 @@ if __name__ == '__main__':
                         data_dict[phase].append(rotated_data_index)
 
 
-    rotate = False  # 是否执行原图旋转到指定目录
+    rotate = False
     IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/salient360/images/")
 
     GAZE_ORIGIN_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/salient360/Raw/Images/H/Scanpaths/")
@@ -131,9 +131,6 @@ if __name__ == '__main__':
         GAZE_PATH.mkdir(parents=True)
     images_paths = [file_path for file_path in IMAGE_PATH.glob("*.jpg") if not '_' in file_path.stem[4:]]
 
-    # random.shuffle(images_paths)  # 全部验证
-    # cnt = int(len(images_paths) * 0.8)   # 对于Salient360, 全部用于验证，这里暂时仿照AOI 80%用于训练，20%用于验证
-    # cnt = int(len(images_paths) * 0)
     images_paths.sort()
     cnt = 60
     train_images_paths = images_paths[:cnt]
@@ -202,7 +199,6 @@ if __name__ == '__main__':
                             "index": scanpath_id
                         }
                         data_dict[phase].append(rotated_data_index)
-
 
     if save:
         path=Path("/data/lyt/01-Datasets/01-ScanPath-Datasets/")

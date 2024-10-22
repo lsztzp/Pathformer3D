@@ -4,8 +4,6 @@ from functools import lru_cache
 import torch
 from torch import nn
 from torch.nn.parameter import Parameter
-# from modules.CoordConv import AddCoordsTh
-
 
 @lru_cache(None)
 def get_xy(delta_phi, delta_theta):

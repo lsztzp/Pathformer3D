@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from datasets.utils import rotate_scanpath, handle_empty, sample_gaze_points
 
-rotate = False  # 是否执行原图旋转到指定目录
+rotate = False  # if rotate
 save = True
 
 IMAGE_PATH = Path("/data/qmengyu/01-Datasets/01-ScanPath-Dataset/sitzmann/images/")
@@ -18,7 +18,7 @@ if not GAZE_PATH.exists():
     GAZE_PATH.mkdir(parents=True)
 
 # config
-length_scanpath = 30  # 扫视路径长度（注视点个数）
+length_scanpath = 30  # the number of fixation
 TEST_SET = ('cubemap_0000.png', 'cubemap_0006.png', 'cubemap_0009.png')
 
 
@@ -135,7 +135,6 @@ if __name__ == '__main__':
                         "scanpaths": str(GAZE_PATH / (image_path.stem + '_' + str(rotation_id) + '.pck')),
                         "index": scanpath_id
                     }
-
                     if phase == "train":
                         data_dict[phase].append(rotated_data_index)
     if save:

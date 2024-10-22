@@ -9,7 +9,6 @@ from metircs.suppor_lib import sphere2plane
 
 sitzmann_test_set = ['cubemap_0000.pck', 'cubemap_0006.pck', 'cubemap_0009.pck']
 
-
 def score_human(source, metrics, ):
     print(f'computing {source} dataset in {metrics}')
     gtspath = dataset_dict[source.lower()]["data_path"]
@@ -62,14 +61,12 @@ def score_human(source, metrics, ):
             scores_all_data[metric] = mean(scores_list)
         else:
             scores_all_data[metric] = 0.
-
     return scores_all_data
 
 
 if __name__ == "__main__":
-    # 四个数据集所有指标人类分数 计算保存在 ./human_score.txt 中
 
-    sources = ('sitzmann', "salient360", "aoi", "jufe")
+    sources = ('sitzmann', "salient360!", "aoi", "jufe")
     # sources = ("aoi", )
     metrics = ('LEV', 'DTW', 'REC', 'DET', 'ScanMatch', 'TDE')
 

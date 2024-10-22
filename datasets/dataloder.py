@@ -2,7 +2,6 @@ import json
 
 import numpy as np
 import torch
-from PIL import Image
 from torch import nn
 import torchvision
 from torch.utils.data import Dataset, DataLoader
@@ -19,7 +18,6 @@ paths = {"sitzmann_data_dict_path": str(default_datasets_dir / 'sitzmann/dataset
 
          "merge_data_dict_path": "/data/lyt/01-Datasets/01-ScanPath-Datasets/dataset.json"
          }
-
 
 class ScanPath360Dataset(Dataset):
     """
@@ -45,7 +43,7 @@ class ScanPath360Dataset(Dataset):
             for data in self.data_list_dict:
                 if data["image_path"] not in image_list:
 
-                    path = data["image_path"]           #SphereCNN 的图像处理方式
+                    path = data["image_path"]
                     img = cv2.imread(path, cv2.IMREAD_COLOR)
                     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                     img_size = torch.tensor([img.shape[:2]])

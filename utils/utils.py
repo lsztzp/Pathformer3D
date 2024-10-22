@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import random
 import os
 import torch
@@ -8,51 +7,6 @@ import torch
 from torch.optim.lr_scheduler import LambdaLR, StepLR, MultiStepLR, CosineAnnealingLR, ReduceLROnPlateau, CyclicLR, \
     ExponentialLR, CosineAnnealingWarmRestarts
 from warmup_scheduler import GradualWarmupScheduler
-
-
-def show_tensor_heatmap(img, annot=None, fmt=".1f", save_path=None):
-    plt.figure(figsize=(10, 20))  # 画布大小
-    sns.set()
-    ax = sns.heatmap(img, cmap="rainbow", annot=annot, fmt=fmt)  # cmap是热力图颜色的参数
-
-    # plt.rcParams["font.sans-serif"] = ['SimHei']
-    plt.rcParams["axes.unicode_minus"] = False
-    if save_path is not None:
-        plt.savefig(save_path)
-        plt.close()
-    else:
-        plt.show()
-
-
-def show_img_seq(img, seq, save_path=None):
-    plt.imshow(img)
-    for i in range(len(seq)):
-        if i < len(seq) - 1:
-            plt.plot([seq[i][1], seq[i + 1][1]], [seq[i][0], seq[i + 1][0]], linewidth=6, alpha=0.7, color="royalblue")
-
-    for i in range(0, len(seq)):
-        if i == 0:
-            color = 'steelblue'
-        elif i == len(seq) - 1:
-            color = 'brown'
-        else:
-            color = 'w'
-        plt.scatter(seq[i][1], seq[i][0], s=1200, c=color, alpha=0.7, linewidths=[1], edgecolors="k")  #
-        plt.text(seq[i][1], seq[i][0], i + 1, ha='center', va='center', fontsize=18, color="k")
-    if save_path is not None:
-        plt.savefig(save_path)
-        plt.close()
-    else:
-        plt.show()
-    plt.axis('off')
-    return plt
-
-
-def save_str_file(save_path, str0):
-    filename = open(save_path, 'w')
-    filename.write(str0)
-    filename.close()
-
 
 def setup_seed(seed):
     random.seed(seed)
@@ -65,7 +19,6 @@ def setup_seed(seed):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     # torch.set_deterministic(True)
-
 
 def save_checkpoint(epoch_num, model, optimizer, work_dir):
     checkpointName = 'ep{}.pth.tar'.format(epoch_num)
@@ -114,7 +67,6 @@ def loadCheckpoint(model, optimizer, work_dir="", epoch=-1, checkpointPath=""):
     else:
         epoch = 0
     return epoch, model, optimizer
-
 
 def build_scheduler(optimizer, lr_scheduler):
     name_scheduler = lr_scheduler.type
@@ -166,7 +118,6 @@ def build_scheduler(optimizer, lr_scheduler):
     if scheduler is None:
         raise Exception('scheduler is wrong')
     return scheduler
-
 
 def normalize_tensor(tensor, rescale=False, zero_fill=False):
     tmin = torch.min(tensor)

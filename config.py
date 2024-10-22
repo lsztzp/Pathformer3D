@@ -1,7 +1,7 @@
 work_dir = ""
 
 image_input_resize = (128, 256)
-action_map_size = (128, 256)   #用于生成预测的三维坐标集合
+action_map_size = (128, 256)
 
 feature_dim = 448  # 192 384 448 512 576
 patch_size = (8, 8)
@@ -29,7 +29,7 @@ postion_method = 'fixed'
 # --------------------------------------------------------------------------------------------
 #  Train Setting
 # --------------------------------------------------------------------------------------------
-device = "cuda:3"
+device = "cuda:0"
 lr = 5e-6
 epoch_nums = 40
 train_batch_size = 18
@@ -55,8 +55,3 @@ sphere_constraint_loss = False
 replace_encoder = False
 
 train_dataset = 'merge'
-
-# --------------------------------------------------------------------------------------------
-#  Ablation Setting
-# --------------------------------------------------------------------------------------------
-saliency_attention = True  # 是否使用显著图进行注意力重加权
